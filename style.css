@@ -14,6 +14,10 @@ html,body{
   margin: 150px auto 0 auto;
   box-shadow: inset 10px 0px 15px 0px rgba(0,0,0,0.1);
   background-color: #e6f0e6;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: transform 1s;
+  cursor: pointer;
 }
 .card .container{
   width: 80%;
@@ -61,7 +65,9 @@ html,body{
 }
 .card .front img, .card .back img{
   width: 283px;
-  border: 5px solid #000; /* Change the border width, style, and color as needed */
+  border-width: 5px 15px;
+  border-style: solid;
+  border-color: #000; /* Change the border width, style, and color as needed */
 }
 .card .back{
   display: flex;
@@ -77,12 +83,41 @@ html,body{
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transition: all 0.8s ease-in-out;
-  background-color: #ecf0f1;
+  background-color: #000000;
   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
 }
-.card:hover .back{
+.card:hover .back {
   transform: perspective(800px) rotateY(-170deg);
   box-shadow: 7px 0px 5px 0px rgba(0,0,0,0.3),
               inset 2px 0px 15px 0px rgba(0,0,0,0.1);
-  background-color: #ecf0f1;
+  background-color: #000000;
+}
+.card .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #000000;
+    transform: perspective(800px) rotateY(-180deg);
+    transition: all .8s ease-in-out;
+  }
+  
+  .card:hover .right {
+    transform: perspective(800px) rotateY(-180deg);
+    backgroune-color: #000000;
+    backface-visibility: visible;
+  }
+  
+  .card .right img {
+    width: 283px;
+    border-width: 5px 15px;
+    border-style: solid;
+    border-color: #000;
+  }
+  
+.card.open {
+  transform: rotateY(-180deg);
 }
